@@ -1,52 +1,57 @@
-/* File: src/components/Header.css */
-
+/* Header Container */
 .site-header {
   width: 100%;
   font-family: Arial, sans-serif;
-  background-color: #3e2723; /* Notun Dark Brown Background */
+  background-color: #3e2723;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #5d4037;
+  /* আগের প্যাডিং ছিল 15px, এখন কমানো হয়েছে */
+  padding: 0; 
 }
 
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 25px;
+  /* Height এখানে ফিক্সড করে দিচ্ছি */
+  height: 75px; 
+  padding: 0 20px;
 }
 
-/* ===== LOGO STYLE UPDATE KORA HOLO ===== */
+/* Logo Style */
 .logo {
-  display: flex; /* Ekhon flex hobe */
-  align-items: center; /* Jate chobi o lekha vertically centered thake */
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
+
 .logo a {
-  font-size: 28px;
+  font-size: 22px; /* Font size একটু কমানো হয়েছে */
   font-weight: bold;
-  color: #ffffff; /* Logo color Shada */
+  color: #ffffff;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-/* ===== NOTUN STYLE: Logo chobi-r jonno ===== */
 .logo-image {
-  height: 60px; /* Chobi-r height (apni change korte paren) */
-  width: auto; /* Width auto thakbe */
-  margin-right: 10px; /* Lekha theke ektu dure */
+  height: 35px; /* লোগোর ছবি ছোট করা হয়েছে */
+  width: auto;
+  margin-right: 10px;
 }
 
-
-/* === Main Navigation === */
+/* Main Navigation */
 .main-nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 .main-nav a {
   text-decoration: none;
-  color: #f5f0e5; /* Link color Beige */
-  font-size: 15px;
+  color: #f5f0e5;
+  font-size: 14px; /* Font size adjust */
   font-weight: bold;
   white-space: nowrap;
 }
@@ -54,89 +59,117 @@
   color: #ffffff;
 }
 
-
-/* === Search Bar === */
+/* Search Bar */
 .search-bar {
   display: flex;
   flex-grow: 1;
-  margin: 0 20px;
-  max-width: 550px;
-  border-radius: 6px;
+  margin: 0 15px;
+  max-width: 450px; /* Width একটু কমানো */
+  border-radius: 4px;
   overflow: hidden;
-  border: 1px solid #5d4037; /* Brown border */
+  border: 1px solid #5d4037;
+  height: 36px; /* Search bar height কমানো */
 }
+
 .search-bar input {
   width: 100%;
-  padding: 12px 15px;
-  font-size: 14px;
+  padding: 0 10px;
+  font-size: 13px;
   border: none;
   outline: none;
-  background-color: #f5f0e5; /* Beige input background */
+  background-color: #f5f0e5;
   color: #333;
 }
+
 .search-button {
-  padding: 10px 18px;
+  padding: 0 15px;
   border: none;
-  background-color: #5d4037; /* Brown button */
-  color: #ffffff; /* Shada icon */
+  background-color: #5d4037;
+  color: #ffffff;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .search-button:hover {
   background-color: #795548;
 }
 
-
-/* === User Navigation === */
+/* User Navigation */
 .user-nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-left: auto;
 }
+
 .user-nav a, .user-nav button {
   text-decoration: none;
-  color: #ffffff; /* Shada text */
-  font-size: 14px;
-  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 13px; /* Font size adjust */
+  padding: 6px 10px;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background-color: transparent;
   cursor: pointer;
   font-family: Arial, sans-serif;
   white-space: nowrap;
 }
+
 .user-nav a:hover, .user-nav button:hover {
-  background-color: #5d4037; /* Brown hover */
+  background-color: #5d4037;
    color: #ffffff;
 }
+
 .user-nav span {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-  padding: 0 10px;
+  padding: 0 5px;
   white-space: nowrap;
   color: #ffffff;
 }
+
 .logout-button {
-  color: #ffcdd2 !important; /* Halka lal logout */
+  color: #ffcdd2 !important;
 }
 .logout-button:hover {
   background-color: #5d4037 !important;
 }
 
-/* === Theme Toggle Button === */
+/* Theme Toggle Button */
 .theme-toggle-button {
   background: transparent;
   border: 1px solid #795548 !important;
   color: #ffffff !important;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 32px; /* Button size কমানো */
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
 }
 .theme-toggle-button:hover {
   background: #5d4037;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    margin: 5px 0;
+    max-width: 100%;
+  }
 }

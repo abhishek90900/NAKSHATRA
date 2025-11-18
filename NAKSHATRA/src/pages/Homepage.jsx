@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './home.css'; 
+import './HomePage.css'; 
 import BookCard from '../components/BookCard'; 
 import heroImage from '../assets/book hone.jpg'; 
 
