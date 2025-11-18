@@ -7,7 +7,7 @@ import Header from './components/Header';
 import AdminRoute from './components/AdminRoute';
 
 // Pages
-import Homepage from './pages/HomePage'; // Note: File name might be HomePage.jsx
+import Homepage from './pages/Homepage'; // Note: File name might be HomePage.jsx
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AdminDashboard from './pages/AdminDashboard'; 
