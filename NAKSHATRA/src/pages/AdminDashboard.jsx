@@ -1,28 +1,29 @@
-import React, { useState, useEffect , useMemo} from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './AdminDashboard.css'; 
 import { Link } from 'react-router-dom';
 import bookIllustration from '../assets/book-illustration.jpg';
 
+// === 🚀 API URL SETUP (Automatic) ===
+// এটি অটোমেটিক লাইভ লিঙ্ক নিয়ে নেবে
+const API_URL = import.meta.env.VITE_API_URL || 'https://nakshatra-sam5.onrender.com';
+
 // ===================================================================
 // === Component 1: Content Jinis Add Korar Form-gulo ===
 // ===================================================================
 function AddContentForms({ token }) {
-  // === Book Form State ===
   const [bookFormData, setBookFormData] = useState({ title: '', author: '', category: '', price: '', description: '' });
   const [coverImage, setCoverImage] = useState(null);
   const [pdfFile, setPdfFile] = useState(null);
   const [bookSuccess, setBookSuccess] = useState(null);
   const [bookError, setBookError] = useState(null);
 
-  // === Category Form State ===
   const [categories, setCategories] = useState([]);
   const [newCatName, setNewCatName] = useState('');
   const [newCatSlug, setNewCatSlug] = useState('');
   const [catSuccess, setCatSuccess] = useState(null);
   const [catError, setCatError] = useState(null);
 
-  // === Coupon Form State ===
   const [couponCode, setCouponCode] = useState('');
   const [discountType, setDiscountType] = useState('percentage');
   const [discountValue, setDiscountValue] = useState(0);
@@ -32,7 +33,8 @@ function AddContentForms({ token }) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/categories');
+        // 🚀 URL Updated
+        const response = await fetch(`${API_URL}/api/categories`);
         const data = await response.json();
         setCategories(data);
       } catch (err) {
@@ -42,8 +44,6 @@ function AddContentForms({ token }) {
     fetchCategories();
   }, []);
 
-  // --- Handle Korar Function-gulo ---
-  
   const handleBookChange = (e) => {
     const { name, value } = e.target;
     setBookFormData(prev => ({ ...prev, [name]: value }));
@@ -65,7 +65,8 @@ function AddContentForms({ token }) {
     dataToUpload.append('pdfFile', pdfFile);
 
     try {
-      const response = await fetch('http://localhost:5000/api/books/add', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/books/add`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: dataToUpload,
@@ -85,7 +86,8 @@ function AddContentForms({ token }) {
     e.preventDefault();
     setCatError(null); setCatSuccess(null);
     try {
-      const response = await fetch('http://localhost:5000/api/categories/add', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/categories/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ name: newCatName, slug: newCatSlug })
@@ -104,7 +106,8 @@ function AddContentForms({ token }) {
     e.preventDefault();
     setCouponError(null); setCouponSuccess(null);
     try {
-      const response = await fetch('http://localhost:5000/api/coupons/add', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/coupons/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ code: couponCode, discountType, discountValue })
@@ -120,12 +123,7 @@ function AddContentForms({ token }) {
 
   return (
     <div className="admin-content-section">
-      
-      {/* --- 🚀 Section 1: Notun Wrapper Div --- */}
       <div className="add-book-section">
-
-        {/* === Apnar Original "Add New Book" Form === */}
-        {/* Apnar pathano code-ti ekhanei ache */}
         <div className="form-container">
           <h2>Add New Book</h2>
           <form className="upload-form" onSubmit={handleBookSubmit}>
@@ -148,19 +146,12 @@ function AddContentForms({ token }) {
             <button type="submit" className="upload-button">Add Book</button>
           </form>
         </div>
-        {/* === Apnar Form-er Code Ekhane Shesh === */}
-
-
-        {/* --- 🚀 Notun Image Section (Wrapper-er Bhitore) --- */}
         <div className="add-book-image">
-          {/* 'bookIllustration' variable-ti apnar import theke ashbe */}
           <img src={bookIllustration} alt="Book Upload Illustration" />
           <p>Add new and exciting books to your digital bookstore!</p>
         </div>
+      </div> 
 
-      </div> {/* <-- .add-book-section wrapper-er shesh --> */}
-
-      {/* === Apnar Original "Category" o "Coupon" Section === */}
       <hr className="divider" />
       <div className="admin-section-split">
         <div className="form-container">
@@ -206,21 +197,15 @@ function AddContentForms({ token }) {
   );
 }
 
-
-
 // ===================================================================
-// === Component 2: Order-gulo Control Korar Page (CHAT & SEARCH UPDATED) ===
+// === Component 2: Order-gulo Control Korar Page ===
 // ===================================================================
 function ManageOrdersComponent({ token }) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedOrderId, setExpandedOrderId] = useState(null);
-
-  // === 🚀 Notun state chat message-er jonno (Aponar code) ===
   const [chatMessage, setChatMessage] = useState(""); 
-  
-  // === 🚀 NOTUN: Search state add kora holo ===
   const [searchTerm, setSearchTerm] = useState("");
 
   const deliveryStatuses = ['Pending', 'Processing', 'Shipped', 'Out for Delivery', 'Delivered', 'Cancelled'];
@@ -229,7 +214,8 @@ function ManageOrdersComponent({ token }) {
   const fetchAllOrders = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/admin/orders', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/admin/orders`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -248,7 +234,8 @@ function ManageOrdersComponent({ token }) {
 
   const handleUpdateDelivery = async (orderId, deliveryStatus) => {
     try {
-      await fetch(`http://localhost:5000/api/admin/update-status/${orderId}`, {
+      // 🚀 URL Updated
+      await fetch(`${API_URL}/api/admin/update-status/${orderId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ deliveryStatus })
@@ -259,7 +246,8 @@ function ManageOrdersComponent({ token }) {
   
   const handleUpdateRefund = async (orderId, itemId, refundStatus) => {
     try {
-      await fetch(`http://localhost:5000/api/admin/update-refund/${orderId}/${itemId}`, {
+      // 🚀 URL Updated
+      await fetch(`${API_URL}/api/admin/update-refund/${orderId}/${itemId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ refundStatus })
@@ -268,12 +256,12 @@ function ManageOrdersComponent({ token }) {
     } catch (err) { console.error(err); }
   };
 
-  // === 🚀 Notun Function Chat Pathanor Jonno (Aponar code) ===
   const handleSendChat = async (orderId) => {
     if (!chatMessage.trim()) return; 
 
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/order-chat/${orderId}`, {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/admin/order-chat/${orderId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -295,17 +283,15 @@ function ManageOrdersComponent({ token }) {
     }
   };
   
-  // === 🚀 NOTUN: Order filter korar logic ===
   const filteredOrders = useMemo(() => {
     if (!searchTerm.trim()) {
-      return orders; // Kichu search na korle shob order dekhabe
+      return orders;
     }
-    // Shudhu razorpayOrderId na, user email diye o search kora jabe
     return orders.filter(order =>
       order.razorpayOrderId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (order.user && order.user.email.toLowerCase().includes(searchTerm.toLowerCase()))
     );
-  }, [searchTerm, orders]); // searchTerm ba orders bodla-le ei function abar cholbe
+  }, [searchTerm, orders]);
 
   if (loading) return <div className="admin-content-section"><p>Loading all orders...</p></div>;
   if (error) return <div className="admin-content-section"><p>Error: {error}</p></div>;
@@ -314,7 +300,6 @@ function ManageOrdersComponent({ token }) {
     <div className="admin-content-section">
       <h2>Manage All Orders</h2>
       
-      {/* === 🚀 NOTUN: Search Bar UI === */}
       <div className="admin-search-bar-wrapper">
         <input
           type="text"
@@ -324,10 +309,8 @@ function ManageOrdersComponent({ token }) {
           className="admin-search-input"
         />
       </div>
-      {/* === Search Bar Shesh === */}
 
       <div className="order-management-list">
-        {/* === 🚀 UPDATED: 'orders.map' er bodole 'filteredOrders.map' === */}
         {filteredOrders.length > 0 ? (
           filteredOrders.map(order => (
             <div key={order._id} className="admin-order-card">
@@ -386,7 +369,6 @@ function ManageOrdersComponent({ token }) {
                     }
                   </div>
 
-                  {/* === 🚀 Notun Chat Input Box (Aponar code) === */}
                   <div className="admin-chat-input-area">
                     <input 
                       type="text" 
@@ -436,7 +418,8 @@ function ManageUsersComponent({ token }) {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/admin/users', {
+        // 🚀 URL Updated
+        const response = await fetch(`${API_URL}/api/admin/users`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();
@@ -455,7 +438,8 @@ function ManageUsersComponent({ token }) {
     try {
       setSelectedUser(userId);
       setUserDetails(null);
-      const response = await fetch(`http://localhost:5000/api/admin/user/${userId}`, {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/admin/user/${userId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -523,31 +507,20 @@ function ManageUsersComponent({ token }) {
 }
 
 // ===================================================================
-// === MAIN ADMIN DASHBOARD (Notun Layout Shoho) ===
+// === MAIN ADMIN DASHBOARD ===
 // ===================================================================
 function AdminDashboard() {
   const { currentUser, token } = useAuth();
   const [activeView, setActiveView] = useState('manage-orders'); 
 
-  // =======================================
-  // === 🚀 FIX: লোডিং স্টেট চেক করা ===
-  // =======================================
-  // currentUser লোড না হওয়া পর্যন্ত অপেক্ষা করুন
   if (!currentUser) {
-    // আপনি এখানে একটি লোডিং স্পিনার বা মেসেজ দেখাতে পারেন
     return <p style={{ textAlign: 'center', marginTop: '50px' }}>Loading Admin Panel...</p>;
   }
 
-  // এখন currentUser লোড হয়ে গেছে, তাই 'role' চেক করা নিরাপদ
   if (currentUser.role !== 'admin') {
     return <p>You are not authorized to view this page.</p>; 
   }
 
-  // =======================================
-  // === END FIX ===
-  // =======================================
-
-  // যদি কোড এই পর্যন্ত আসে, তার মানে ইউজার লোড হয়েছে এবং সে অ্যাডমিন
   return (
     <div className="admin-panel-container">
       

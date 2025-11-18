@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Login system import kora
-import './BookCard.css'; // Apnar CSS file
+import { useAuth } from '../context/AuthContext';
+import './BookCard.css';
 
 function BookCard({ book }) {
-  const { currentUser, token } = useAuth(); // Login kora user-er info nilam
-  const navigate = useNavigate(); // Page change koranor jonne
+  const { currentUser, token } = useAuth();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
+  // API URL সেট করা (Environment অনুযায়ী অটোমেটিক চেঞ্জ হবে)
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleAddToCart = async (e) => {
-    e.preventDefault(); // Link-e click kora bondho korbe
-    e.stopPropagation(); // Parent link-e jete badha debe
+    e.preventDefault();
+    e.stopPropagation();
     setMessage(null);
 
     // === 1. LOGIN CHECK ===
     if (!currentUser) {
-      // Jodi login kora na thake, Login page-e pathiye deoa
       navigate('/login');
-      return; // Kaj bondho
+      return;
     }
 
-    // Jodi login kora thake:
     setIsLoading(true);
     try {
-      // === 2. BACKEND-E REQUEST PATHANO ===
-      const response = await fetch('http://localhost:5000/api/cart/add', {
+      // === 2. BACKEND REQUEST (Variable URL ব্যবহার করা হয়েছে) ===
+      const response = await fetch(`${apiUrl}/api/cart/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // Amader "Security Guard"-ke chabi deoa
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ bookId: book._id, quantity: 1 })
       });
@@ -40,7 +41,7 @@ function BookCard({ book }) {
 
       // === 3. SUCCESS ===
       setMessage('Added!');
-      setTimeout(() => setMessage(null), 2000); // 2 sec por message chole jabe
+      setTimeout(() => setMessage(null), 2000);
 
     } catch (err) {
       setMessage('Error!');
@@ -63,11 +64,10 @@ function BookCard({ book }) {
         <div className="card-content">
           <h3 className="card-title">{book.title}</h3>
           <p className="card-author">by {book.author}</p>
-          <p className="card-price">₹{book.price}</p> {/* <-- RUPEE SYMBOL (₹) KORA HOLO */}
+          <p className="card-price">₹{book.price}</p>
         </div>
       </Link>
       
-      {/* === NOTUN "ADD TO CART" BUTTON === */}
       <div className="card-button-container">
         <button 
           onClick={handleAddToCart} 

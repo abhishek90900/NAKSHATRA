@@ -14,6 +14,9 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true); // Page load howar shomoy check korbe
 
+  // === API URL Setup (Automatic Switch) ===
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Page load howar shomoy check korbe user-er data localStorage-e ache kina
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -29,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   // === SIGNUP Function ===
   const signup = async (name, email, password) => {
     // Shudhu signup korbe, auto-login korbe na
-    const response = await fetch('http://localhost:5000/api/auth/signup', {
+    const response = await fetch(`${apiUrl}/api/auth/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
@@ -46,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
   // === LOGIN Function ===
   const login = async (email, password) => {
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch(`${apiUrl}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -85,7 +88,7 @@ export const AuthProvider = ({ children }) => {
     login,
     signup,
     logout,
-    loading, // <<<--- 🚀 এইটা যোগ করা হয়েছে
+    loading, 
   };
 
   // Jodi loading hoy, tahole kichu dekhabena, jate app crash na kore

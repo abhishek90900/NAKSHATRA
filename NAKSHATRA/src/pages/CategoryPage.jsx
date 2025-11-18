@@ -4,6 +4,11 @@ import { useParams } from 'react-router-dom'; // URL theke category name nite
 import BookCard from '../components/BookCard'; // Ager BookCard-i bebohar korbo
 import './CategoryPage.css'; // Notun CSS
 
+// === 🚀 API URL SETUP (Automatic) ===
+// VITE_API_URL environment variable theke link nibe
+// Jodi .env file na thake, tobe default hisebe localhost nibe
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000' || 'https://nakshatra-sam5.onrender.com';
+
 function CategoryPage() {
   // URL theke categoryName pawa (e.g., "fiction")
   const { categoryName } = useParams(); 
@@ -17,8 +22,8 @@ function CategoryPage() {
       setLoading(true);
       setError(null);
       try {
-        // Backend-er category route-ke call kora
-        const response = await fetch(`http://localhost:5000/api/books/category/${categoryName}`);
+        // Backend-er category route-ke call kora (URL UPDATED)
+        const response = await fetch(`${API_URL}/api/books/category/${categoryName}`);
         
         if (!response.ok) {
           throw new Error('No books found in this category');

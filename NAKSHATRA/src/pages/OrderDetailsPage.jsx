@@ -3,6 +3,11 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './OrderDetailsPage.css';
 
+// === 🚀 API URL SETUP (Automatic) ===
+// VITE_API_URL environment variable theke link nibe
+// Jodi .env file na thake, tobe default hisebe localhost nibe
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 // === Notun Animated Delivery Tracker ===
 const DeliveryTracker = ({ status, estimatedDate }) => {
   const deliverySteps = ['Pending', 'Processing', 'Shipped', 'Out for Delivery', 'Delivered'];
@@ -53,7 +58,8 @@ const RefundModal = ({ item, orderId, token, onClose, onRefundRequested }) => {
     e.preventDefault();
     setMessage(null);
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/request-refund/${orderId}/${item._id}`, {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/orders/request-refund/${orderId}/${item._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +112,8 @@ const ChatModal = ({ orderId, chatHistory, token, onClose, onChatSent }) => {
     if (!message.trim()) return;
     setSending(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/add-chat/${orderId}`, {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/orders/add-chat/${orderId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ message })
@@ -170,7 +177,8 @@ function OrderDetailsPage() {
     const fetchOrderDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+        // 🚀 URL Updated
+        const response = await fetch(`${API_URL}/api/orders/${orderId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();

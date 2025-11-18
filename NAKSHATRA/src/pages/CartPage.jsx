@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import './CartPage.css';
-import logoImage from '../assets/logo.png'; // Logo import kora holo
+import logoImage from '../assets/logo.png'; 
+
+// === 🚀 API URL SETUP ===
+// Auto-switch between Localhost and Live Server
+const API_URL = import.meta.env.VITE_API_URL || 'https://nakshatra-sam5.onrender.com';
 
 function CartPage() {
   const { currentUser, token } = useAuth();
@@ -23,7 +27,8 @@ function CartPage() {
     }
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/cart', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/cart`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!response.ok) throw new Error('Failed to fetch cart');
@@ -43,20 +48,23 @@ function CartPage() {
   // === Item Remove / Quantity Change ===
   const handleRemoveItem = async (bookId) => {
     try {
-      await fetch(`http://localhost:5000/api/cart/remove/${bookId}`, {
+      // 🚀 URL Updated
+      await fetch(`${API_URL}/api/cart/remove/${bookId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       fetchCart();
     } catch (err) { console.error(err); }
   };
+
   const handleQuantityChange = async (bookId, newQuantity) => {
     if (newQuantity < 1) {
       handleRemoveItem(bookId);
       return;
     }
     try {
-      await fetch('http://localhost:5000/api/cart/update', {
+      // 🚀 URL Updated
+      await fetch(`${API_URL}/api/cart/update`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ bookId, quantity: newQuantity })
@@ -70,7 +78,8 @@ function CartPage() {
     setCouponMessage(null);
     setDiscountDetails(null);
     try {
-      const response = await fetch('http://localhost:5000/api/coupons/apply', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/coupons/apply`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ code: couponCode })
@@ -99,12 +108,12 @@ function CartPage() {
   if (totalDiscount > subtotal) totalDiscount = subtotal;
   const totalPrice = subtotal - totalDiscount;
 
-  
-  // === NOTUN PAYMENT FUNCTION (RAZORPAY) - UPDATE KORA HOLO ===
+  // === PAYMENT FUNCTION (RAZORPAY) ===
   const handleCheckout = async () => {
     try {
       // 1. Backend-ke bola ekta order toiri korte
-      const orderResponse = await fetch('http://localhost:5000/api/payment/create-order', {
+      // 🚀 URL Updated
+      const orderResponse = await fetch(`${API_URL}/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,9 +122,7 @@ function CartPage() {
         body: JSON.stringify({ amount: totalPrice.toFixed(2) })
       });
       
-      // === NOTUN ERROR CHECK ===
-      // Ekhon JSON error porte parbe
-      const orderData = await orderResponse.json(); // Prothome JSON porte cheshta kora
+      const orderData = await orderResponse.json(); 
       if (!orderResponse.ok) {
         throw new Error(orderData.message || 'Failed to create order');
       }
@@ -126,7 +133,7 @@ function CartPage() {
         amount: orderData.amount,
         currency: "INR",
         name: "Nakshatra Book Store",
-        description: "Test Book Payment",
+        description: "Purchase Payment",
         image: logoImage,
         order_id: orderData.orderId,
         
@@ -134,7 +141,8 @@ function CartPage() {
         handler: async function (response) {
           try {
             // 4. Backend-ke bola payment-ta verify korte
-            const verifyResponse = await fetch('http://localhost:5000/api/payment/verify-payment', {
+            // 🚀 URL Updated
+            const verifyResponse = await fetch(`${API_URL}/api/payment/verify-payment`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -147,15 +155,13 @@ function CartPage() {
               })
             });
 
-            // === NOTUN ERROR CHECK ===
             const verifyData = await verifyResponse.json();
             if (!verifyResponse.ok) {
               throw new Error(verifyData.message || 'Payment verification failed');
             }
             
-            // 5. Shob successful!
             alert('Payment Successful! Your order has been placed.');
-            navigate('/'); // Home page-e pathiye deoa
+            navigate('/'); 
             
           } catch (verifyErr) {
             console.error(verifyErr);
@@ -167,22 +173,18 @@ function CartPage() {
           email: currentUser.email,
         },
         theme: {
-          color: "#5d4037" // Apnar theme colour
+          color: "#5d4037" 
         }
       };
 
-      // 6. Razorpay popup open kora
       const razor = new window.Razorpay(options);
       razor.open();
 
     } catch (err) {
       console.error(err);
-      // === NOTUN ALERT ===
-      // Ekhon shothik error-ta dekhabe
       alert(`Error starting payment: ${err.message}`);
     }
   };
-
 
   if (loading) return <div className="cart-container"><p>Loading your basket...</p></div>;
   if (error) return <div className="cart-container"><p>Error: {error}</p></div>;

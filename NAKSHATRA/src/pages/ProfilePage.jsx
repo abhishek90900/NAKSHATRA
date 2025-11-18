@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import './ProfilePage.css'; // Amra ei CSS file-takeo update korbo
+import './ProfilePage.css'; 
 
-// === 1. "My Details" Component (Ager motoi) ===
+// === 🚀 API URL SETUP (Automatic) ===
+// VITE_API_URL environment variable theke link nibe
+// Jodi .env file na thake, tobe default hisebe localhost nibe
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+// === 1. "My Details" Component ===
 function ProfileDetails({ token }) {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '',
@@ -16,7 +21,8 @@ function ProfileDetails({ token }) {
     const fetchProfile = async () => {
       try {
         setLoading(true); setMessage(null);
-        const response = await fetch('http://localhost:5000/api/user/profile', {
+        // 🚀 URL Updated
+        const response = await fetch(`${API_URL}/api/user/profile`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();
@@ -52,7 +58,8 @@ function ProfileDetails({ token }) {
     setMessage(null);
     try {
       const { name, phone, address } = formData;
-      const response = await fetch('http://localhost:5000/api/user/profile', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/user/profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ name, phone, address })
@@ -91,7 +98,7 @@ function ProfileDetails({ token }) {
   );
 }
 
-// === 2. "My Orders" Component (Notun Flipkart List Layout) ===
+// === 2. "My Orders" Component ===
 function MyOrders({ orders, loading }) {
   if (loading) return <p>Loading orders...</p>;
   if (orders.length === 0) return <p>You have not placed any orders yet.</p>;
@@ -101,7 +108,6 @@ function MyOrders({ orders, loading }) {
       <h2>My Orders</h2>
       <div className="order-list-simple">
         {orders.map(order => (
-          // Ekhon prottek-ta order ekta link hobe notun OrderDetailsPage-er jonne
           <Link to={`/order/${order._id}`} key={order._id} className="order-summary-card">
             <div className="order-summary-image">
               <img 
@@ -135,7 +141,7 @@ function MyOrders({ orders, loading }) {
   );
 }
 
-// === 3. Main Profile Page (Ager motoi) ===
+// === 3. Main Profile Page ===
 function ProfilePage() {
   const { currentUser, token, logout } = useAuth();
   const navigate = useNavigate();
@@ -151,7 +157,8 @@ function ProfilePage() {
   const handleFetchOrders = async () => {
     try {
       setOrderLoading(true);
-      const response = await fetch('http://localhost:5000/api/orders/my-orders', {
+      // 🚀 URL Updated
+      const response = await fetch(`${API_URL}/api/orders/my-orders`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -165,14 +172,12 @@ function ProfilePage() {
     }
   };
   
-  // Jokhon page load hobe, tokhon-i jeno "My Profile" load hoy
   useEffect(() => {
     if (activeView === 'profile') {
-      // ProfileDetails component nijei nijer data fetch korche
     } else if (activeView === 'orders') {
       handleFetchOrders();
     }
-  }, [activeView, token]); // activeView change holei data fetch hobe
+  }, [activeView, token]); 
 
   return (
     <div className="profile-page-container">
@@ -195,7 +200,7 @@ function ProfilePage() {
               className={activeView === 'orders' ? 'active' : ''}
               onClick={() => {
                 setActiveView('orders');
-                handleFetchOrders(); // Click korle fetch korbe
+                handleFetchOrders(); 
               }}
             >
               My Orders

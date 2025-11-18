@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './BookDetailsPage.css'; // CSS
 
+// === 🚀 API URL SETUP ===
+const API_URL = import.meta.env.VITE_API_URL || 'https://nakshatra-sam5.onrender.com';
+
 function BookDetailsPage() {
   const { bookId } = useParams(); 
   const [book, setBook] = useState(null);
@@ -14,7 +17,8 @@ function BookDetailsPage() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`http://localhost:5000/api/books/${bookId}`);
+        // 🚀 URL Updated here
+        const response = await fetch(`${API_URL}/api/books/${bookId}`);
         if (!response.ok) {
           throw new Error('Book not found');
         }
@@ -47,7 +51,7 @@ function BookDetailsPage() {
       <div className="details-content">
         <h1 className="details-title">{book.title}</h1>
         <p className="details-author">by {book.author}</p>
-        <p className="details-price">${book.price}</p>
+        <p className="details-price">₹{book.price}</p> {/* Dollar sign changed to Rupee if needed */}
         <p className="details-description">{book.description}</p>
         
         <div className="details-actions">

@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
-// === 1. `useLocation` import korun ===
 import { Link, useLocation } from 'react-router-dom';
 import './HomePage.css'; 
 import BookCard from '../components/BookCard'; 
 import heroImage from '../assets/book hone.jpg'; 
 
+// === 🚀 API URL SETUP (Automatic) ===
+// VITE_API_URL environment variable theke link nibe
+// Jodi .env file na thake, tobe default hisebe localhost nibe
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000' || 'https://nakshatra-sam5.onrender.com';
+
 function HomePage() {
   
-  // === 2. State toiri kora ===
+  // === State toiri kora ===
   const [books, setBooks] = useState([]);
-  const [categories, setCategories] = useState([]); // Category state
+  const [categories, setCategories] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // === 3. URL theke search query neoa ===
+  // === URL theke search query neoa ===
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('search');
 
-  // === 4. Data Fetch Korar Jonno useEffect Update Kora ===
+  // === Data Fetch Korar Jonno useEffect ===
   useEffect(() => {
     const fetchBooksAndCategories = async () => {
       try {
@@ -25,15 +29,17 @@ function HomePage() {
         setError(null);
 
         // --- Fetch Categories (Database theke) ---
-        const catResponse = await fetch('http://localhost:5000/api/categories');
+        // 🚀 URL Updated
+        const catResponse = await fetch(`${API_URL}/api/categories`);
         if (!catResponse.ok) throw new Error('Failed to fetch categories');
         const catData = await catResponse.json();
         setCategories(catData);
 
         // --- Fetch Books (Search query shoho) ---
-        let bookApiUrl = 'http://localhost:5000/api/books';
+        // 🚀 URL Updated
+        let bookApiUrl = `${API_URL}/api/books`;
         if (searchQuery) {
-          bookApiUrl += `?search=${searchQuery}`; // API URL-e search query add kora
+          bookApiUrl += `?search=${searchQuery}`; 
         }
         
         const bookResponse = await fetch(bookApiUrl);
@@ -49,7 +55,7 @@ function HomePage() {
     };
 
     fetchBooksAndCategories();
-  }, [searchQuery]); // [searchQuery] mane, jokhon-i URL-er search query change hobe, tokhon-i data abar fetch hobe
+  }, [searchQuery]); 
 
   return (
     <div className="homepage-container">
