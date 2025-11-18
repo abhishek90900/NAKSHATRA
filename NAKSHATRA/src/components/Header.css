@@ -1,0 +1,142 @@
+/* File: src/components/Header.css */
+
+.site-header {
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #3e2723; /* Notun Dark Brown Background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #5d4037;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+}
+
+/* ===== LOGO STYLE UPDATE KORA HOLO ===== */
+.logo {
+  display: flex; /* Ekhon flex hobe */
+  align-items: center; /* Jate chobi o lekha vertically centered thake */
+}
+.logo a {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff; /* Logo color Shada */
+  text-decoration: none;
+}
+
+/* ===== NOTUN STYLE: Logo chobi-r jonno ===== */
+.logo-image {
+  height: 60px; /* Chobi-r height (apni change korte paren) */
+  width: auto; /* Width auto thakbe */
+  margin-right: 10px; /* Lekha theke ektu dure */
+}
+
+
+/* === Main Navigation === */
+.main-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+.main-nav a {
+  text-decoration: none;
+  color: #f5f0e5; /* Link color Beige */
+  font-size: 15px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.main-nav a:hover {
+  color: #ffffff;
+}
+
+
+/* === Search Bar === */
+.search-bar {
+  display: flex;
+  flex-grow: 1;
+  margin: 0 20px;
+  max-width: 550px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #5d4037; /* Brown border */
+}
+.search-bar input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: #f5f0e5; /* Beige input background */
+  color: #333;
+}
+.search-button {
+  padding: 10px 18px;
+  border: none;
+  background-color: #5d4037; /* Brown button */
+  color: #ffffff; /* Shada icon */
+  cursor: pointer;
+  font-size: 16px;
+}
+.search-button:hover {
+  background-color: #795548;
+}
+
+
+/* === User Navigation === */
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+.user-nav a, .user-nav button {
+  text-decoration: none;
+  color: #ffffff; /* Shada text */
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+}
+.user-nav a:hover, .user-nav button:hover {
+  background-color: #5d4037; /* Brown hover */
+   color: #ffffff;
+}
+.user-nav span {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 10px;
+  white-space: nowrap;
+  color: #ffffff;
+}
+.logout-button {
+  color: #ffcdd2 !important; /* Halka lal logout */
+}
+.logout-button:hover {
+  background-color: #5d4037 !important;
+}
+
+/* === Theme Toggle Button === */
+.theme-toggle-button {
+  background: transparent;
+  border: 1px solid #795548 !important;
+  color: #ffffff !important;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.theme-toggle-button:hover {
+  background: #5d4037;
+}

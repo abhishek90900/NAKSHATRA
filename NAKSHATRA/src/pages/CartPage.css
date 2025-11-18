@@ -1,0 +1,223 @@
+.cart-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f5f5f5; /* Light grey background */
+}
+
+.cart-container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #3e2723;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #d7ccc8;
+  padding-bottom: 10px;
+}
+
+/* === Jokhon Cart Khali Thake === */
+.cart-empty {
+  text-align: center;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.cart-empty p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* === Main Layout === */
+.cart-layout {
+  display: flex;
+  flex-wrap: wrap; /* Mobile-e niche neme jabe */
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Bam Diker Item List */
+.cart-items-list {
+  flex: 2; /* 66% jayga nebe */
+  min-width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.cart-item {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #efebe9;
+  gap: 15px;
+}
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3e2723;
+  margin: 0 0 5px 0;
+}
+.cart-item-author {
+  font-size: 0.9rem;
+  color: #795548;
+  margin-bottom: 10px;
+}
+.cart-item-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #d32f2f;
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.quantity-selector button {
+  background: #f5f5f5;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.quantity-selector span {
+  padding: 5px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  color: #991b1b;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* === Dan Diker Price Summary === */
+.cart-summary {
+  flex: 1; /* 33% jayga nebe */
+  min-width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  position: sticky; /* Jate scroll korleo eta dekha jay */
+  top: 20px;
+}
+.cart-summary h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #3e2723;
+  border-bottom: 1px solid #efebe9;
+  padding-bottom: 10px;
+  margin: 0 0 15px 0;
+}
+
+/* Coupon Section */
+.coupon-section {
+  margin-bottom: 20px;
+}
+.coupon-section label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.coupon-input {
+  display: flex;
+}
+.coupon-input input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+.coupon-input button {
+  border: none;
+  background-color: #5d4037;
+  color: white;
+  padding: 0 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+.coupon-message {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+.coupon-message.success { color: green; }
+.coupon-message.error { color: red; }
+
+/* Price Breakdown */
+.price-breakdown {
+  border-top: 1px dashed #ccc;
+  padding-top: 15px;
+}
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.price-line.discount span {
+  color: green;
+  font-weight: 600;
+}
+.price-line.total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.price-line.total span:last-child {
+  color: #3e2723;
+}
+
+/* === Button Styles === */
+.cart-page-button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #5d4037;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.cart-page-button:hover {
+  background-color: #3e2723;
+}
+.checkout-button {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  padding: 15px;
+}

@@ -1,0 +1,93 @@
+/* File: src/pages/FormPage.css */
+
+.form-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 80vh;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  background-color: #ffffff; /* Shada background */
+  border: 1px solid #d7ccc8; /* Halka brown border */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.form-container h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #3e2723; /* Dark brown title */
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Button style */
+.form-button {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #5d4037; /* Brown button */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.form-button:hover {
+  background-color: #3e2723; /* Dark brown hover */
+}
+
+/* Error message-er jonno style */
+.form-error {
+  color: #c00; /* Error lal-i thakbe */
+  background-color: #fff0f0;
+  padding: 10px 15px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 15px;
+  border: 1px solid #ffaaaa;
+}
+
+.form-footer-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.form-footer-link a {
+  color: #5d4037; /* Brown link */
+  text-decoration: none;
+  font-weight: 600;
+}
+.form-footer-link a:hover {
+  text-decoration: underline;
+}

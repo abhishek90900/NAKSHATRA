@@ -1,0 +1,93 @@
+/* Prottek-ti boi-er card-er design */
+.book-card {
+  background-color: #ffffff;
+  border: 1px solid #d7ccc8; /* Theme color */
+  border-radius: 8px;
+  overflow: hidden; /* Chobi jate rounded corners mane */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Puro card-take link korar bodole, shudhu uporer ongsho-ta link kora holo */
+.book-card-link-wrapper {
+  text-decoration: none;
+  color: #3e2723; /* Theme text color */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Jate content nicher jayga nite pare */
+}
+
+.card-image-container {
+  width: 100%;
+  height: 250px; /* Prottek-ti chobi-r shoman height */
+  background-color: #f5f0e5; /* Loading background color */
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Chobi-ke aspect ratio thik rekhe fill kore */
+}
+
+.card-content {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-author {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 10px 0;
+}
+
+.card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5d4037;
+  margin-top: auto; /* Price-ke shobar niche pathay */
+}
+
+/* === NOTUN BUTTON-ER STYLE === */
+.card-button-container {
+  padding: 0 15px 15px 15px; /* Button-er charpashe padding */
+}
+
+.book-card-button {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #5d4037; /* Apnar Brown theme button */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.book-card-button:hover:not(:disabled) {
+  background-color: #3e2723;
+}
+
+.book-card-button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}

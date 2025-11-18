@@ -1,0 +1,444 @@
+/* === Notun Admin Panel Layout === */
+.admin-panel-container {
+  display: flex;
+  /* align-items: flex-start; <<<--- 🚀 EI LINE-TI REMOVE KORA HOYECHE */
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 0 20px;
+  gap: 20px;
+  background-color: #f5f5f5; /* Light grey background */
+  min-height: calc(100vh - 100px); /* 100px header baad diye */
+}
+
+/* === Bam Diker Sidebar === */
+.admin-sidebar {
+  flex: 0 0 280px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  /* position: sticky; <<<--- 🚀 EI LINE-TI REMOVE KORA HOYECHE */
+  /* top: 90px; <<<--- 🚀 EI LINE-TI REMOVE KORA HOYECHE */
+}
+.sidebar-user-info { 
+  padding: 20px; 
+  text-align: center; 
+  border-bottom: 1px solid #efebe9; 
+  background-color: #b9916a; 
+  color: white; 
+}
+.sidebar-user-info img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; background-color: #efebe9; border: 3px solid #f5f0e5; }
+.sidebar-user-info h4 { font-size: 1.2rem; font-weight: 600; margin: 0; color: white; }
+.sidebar-user-info p { font-size: 0.9rem; color: #f5f0e5; margin: 5px 0 0 0; }
+.admin-sidebar-nav { display: flex; flex-direction: column; padding: 10px; }
+.admin-sidebar-nav button { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: 600; border: none; background-color: transparent; color: #5d4037; border-radius: 6px; cursor: pointer; text-align: left; transition: all 0.2s; }
+.admin-sidebar-nav button:hover { background-color: #dbbbb1; color: #3e2723; }
+.admin-sidebar-nav button.active { background-color: #f5f0e5; color: #3e2723; font-weight: 700; }
+.admin-sidebar-nav button:disabled { color: #9e9e9e; cursor: not-allowed; }
+
+/* === Dan Diker Content Area === */
+.admin-content { 
+  flex: 1; 
+  min-width: 300px;
+  /* === 🚀 NOTUN LINE JOG KORA HOYECHE === */
+  /* Eita content-er bhitorer box-guloke stretch korte shahajjo korbe */
+  display: flex; 
+  flex-direction: column;
+}
+
+.admin-content-section { 
+  background-color: #fff; 
+  border-radius: 8px; 
+  padding: 30px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+  margin-bottom: 20px;
+  /* === 🚀 NOTUN LINE JOG KORA HOYECHE === */
+  /* Eita content box-take full height stretch korbe */
+  flex-grow: 1;
+}
+.admin-content-section h2 { font-size: 1.5rem; font-weight: 600; color: #3e2723; margin: 0 0 20px 0; border-bottom: 1px solid #efebe9; padding-bottom: 10px; }
+
+/* === Notun Add Book Section Styling === */
+.add-book-section {
+  display: flex;
+  flex-wrap: wrap; /* Mobile-e jate niche chole ashe */
+  gap: 30px; /* Duto section-er majhe faka jayga */
+  align-items: flex-start;
+}
+.add-book-section > .form-container {
+  flex: 2; /* Form-ta chobir cheye boro jayga nebe */
+  min-width: 400px;
+  /* Ager .form-container er styling remove kora */
+  background: none;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+}
+.add-book-image {
+  flex: 1; /* Chobi-ta kom jayga nebe */
+  min-width: 300px;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa; /* Halka background color */
+  border-radius: 8px;
+  border: 1px dashed #e0e0e0;
+}
+.add-book-image img {
+  max-width: 80%; /* Chobi-ta jate khub boro na hoy */
+  height: auto;
+  margin-bottom: 20px;
+}
+.add-book-image p {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.5;
+}
+/* === End of Notun CSS === */
+
+
+.admin-section-split { display: flex; flex-wrap: wrap; gap: 20px; }
+.admin-section-split .form-container { flex: 1; min-width: 300px; }
+/* General form container */
+.form-container { background: #ffffff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); border: 1px solid #efebe9; }
+.divider { border: 0; height: 1px; background: #d7ccc8; margin: 40px 0; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+.form-group input[type="text"], .form-group input[type="number"], .form-group textarea, .form-group select { width: 100%; padding: 12px 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+.form-group textarea { min-height: 100px; resize: vertical; }
+.file-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group input[type="file"] { padding: 10px; background-color: #f9f9f9; }
+.upload-button { width: 100%; padding: 12px 15px; font-size: 16px; font-weight: 600; color: #fff; background-color: #5d4037; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; }
+.upload-button:hover { background-color: #3e2723; }
+.upload-button:disabled { background-color: #9e9e9e; cursor: not-allowed; }
+.upload-button.small { width: auto; padding: 10px 20px; }
+.form-message { padding: 15px; margin-bottom: 20px; border-radius: 6px; text-align: center; font-weight: 600; }
+.form-success { background-color: #d4edda; color: #155724; }
+.form-error { background-color: #f8d7da; color: #721c24; }
+
+/* === Manage Orders Component-er Style === */
+.order-management-list { display: flex; flex-direction: column; gap: 15px; }
+.admin-order-card { background: #fff; border-radius: 8px; border: 1px solid #d7ccc8; }
+.admin-order-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; padding: 15px 20px; cursor: pointer; }
+.admin-order-header:hover { background: #f5f0e5; }
+.admin-order-header div { font-size: 0.9rem; }
+.admin-order-header select { padding: 5px 8px; border-radius: 4px; border: 1px solid #ccc; font-weight: 600; }
+.expand-arrow { font-weight: 700; }
+.admin-order-details { padding: 20px; border-top: 1px solid #efebe9; background: #fafafa; }
+.admin-order-details h4 { font-size: 1.1rem; font-weight: 600; color: #3e2723; margin: 0 0 10px 0; }
+.admin-item-row { display: flex; align-items: center; gap: 15px; padding: 10px 0; border-bottom: 1px solid #eee; }
+.admin-item-row img { width: 50px; height: 70px; object-fit: cover; border-radius: 4px; }
+.admin-item-row p { margin: 0; flex-grow: 1; }
+.refund-section { margin-left: auto; border-left: 1px solid #eee; padding-left: 15px; min-width: 250px; }
+.refund-section p { font-size: 0.9rem; }
+.refund-status-admin { font-weight: 700; padding: 3px 8px; border-radius: 12px; margin: 0 10px; }
+.status-requested { background-color: #fffbeb; color: #b45309; }
+.status-approved { background-color: #dcfce7; color: #166534; }
+.status-rejected { background-color: #fee2e2; color: #991b1b; }
+.admin-chat-history { background: #eee; border-radius: 6px; padding: 10px; max-height: 200px; overflow-y: auto; }
+.chat-bubble { padding: 8px 12px; border-radius: 10px; margin-bottom: 10px; max-width: 80%; }
+.chat-bubble p { margin: 0; }
+.chat-bubble.user { background: #e0e0e0; margin-left: auto; }
+.chat-bubble.admin { background: #c5cae9; }
+
+/* === "Manage Users" Style === */
+.manage-users-layout { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.user-list-column { flex: 1; min-width: 300px; max-height: 600px; overflow-y: auto; }
+.user-list-item { display: block; width: 100%; padding: 15px; background: #fff; border: 1px solid #d7ccc8; border-radius: 6px; margin-bottom: 10px; text-align: left; cursor: pointer; transition: all 0.2s; }
+.user-list-item:hover { background: #f5f0e5; }
+.user-list-item.active { background: #efebe9; border-color: #5d4037; }
+.user-list-item p { margin: 0; font-weight: 600; color: #3e2723; }
+.user-list-item span { font-size: 0.9rem; color: #555; }
+.user-details-column { flex: 2; min-width: 400px; position: sticky; top: 90px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); padding: 20px; }
+.user-details-content p { font-size: 1rem; line-height: 1.6; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+.user-details-content p strong { color: #3e2723; }
+.user-order-history { max-height: 300px; overflow-y: auto; border-top: 1px solid #eee; padding-top: 10px; }
+.user-order-link { display: block; padding: 10px; border-radius: 4px; text-decoration: none; color: #3e2723; transition: background 0.2s; border-bottom: 1px solid #eee; }
+.user-order-link:hover { background: #f5f0e5; }
+.user-order-link p { margin: 0; padding: 0; border: none; }
+.user-order-link span { font-size: 0.9rem; color: #555; }
+
+/* === Notun Admin Chat Input Area Style === */
+
+.admin-chat-history {
+  background: #f0f0f0; /* Halka background */
+  border-radius: 6px;
+  padding: 10px 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+.chat-bubble { 
+  padding: 8px 12px; 
+  border-radius: 10px; 
+  margin-bottom: 10px; 
+  max-width: 80%; 
+  line-height: 1.4;
+}
+.chat-bubble p { margin: 0; }
+.chat-bubble.user { 
+  background: #e0e0e0; 
+  margin-left: auto; 
+  text-align: right;
+}
+.chat-bubble.admin { 
+  background: #c5cae9; /* Admin message-er jonno alada color */
+  margin-right: auto;
+  text-align: left;
+}
+.chat-timestamp {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 3px;
+}
+
+.admin-chat-input-area {
+  display: flex;
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+.admin-chat-input-area input[type="text"] {
+  flex-grow: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px 0 0 6px;
+  font-size: 0.9em;
+  box-sizing: border-box; /* Eita important */
+}
+.admin-chat-input-area input[type="text"]:focus {
+  outline: none;
+  border-color: #5d4037;
+  box-shadow: 0 0 0 2px rgba(93, 64, 55, 0.2);
+}
+.admin-chat-input-area button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #5d4037; /* Apnar theme color */
+  color: white;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+.admin-chat-input-area button:hover {
+  background-color: #3e2723;
+}
+
+/* === Admin Content Section === */
+.admin-content-section {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.admin-content-section h2 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* === NOTUN: Search Bar Style === */
+.admin-search-bar-wrapper {
+  margin-bottom: 20px;
+}
+
+.admin-search-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box; /* Important for 100% width */
+}
+
+/* === Order Card Styles === */
+.admin-order-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* For border-radius */
+}
+
+.admin-order-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-order-header:hover {
+  background-color: #f5f5f5;
+}
+
+.admin-order-header div {
+  padding: 5px 0;
+  flex: 1 1 180px; /* Responsive behavior */
+  font-size: 0.9rem;
+}
+
+.expand-arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Dropdown (select) style */
+.admin-select {
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 0.9rem;
+}
+
+/* === Order Details (Expanded View) === */
+.admin-order-details {
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+.admin-order-details h4 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.admin-item-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-item-row img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.admin-item-row p {
+  flex: 1;
+  margin: 0;
+}
+
+/* Refund Section */
+.refund-section {
+  flex: 1;
+  min-width: 200px;
+  padding-left: 20px;
+  font-size: 0.9rem;
+}
+
+.refund-status-admin {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin: 0 5px;
+}
+
+/* Status Colors */
+.status-none { background-color: #eee; color: #555; }
+.status-requested { background-color: #fff8e1; color: #f57c00; }
+.status-approved { background-color: #e8f5e9; color: #4caf50; }
+.status-rejected { background-color: #ffebee; color: #f44336; }
+.status-processing { background-color: #e3f2fd; color: #2196f3; }
+.status-refunded { background-color: #e0f2f1; color: #009688; }
+
+/* === Chat History === */
+.admin-chat-history {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+.chat-bubble {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.chat-bubble p {
+  margin: 0;
+}
+
+/* Admin (sender) bubble */
+.chat-bubble.admin {
+  background-color: #d1eaff; /* Light blue */
+  color: #333;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+/* User (receiver) bubble */
+.chat-bubble.user {
+  background-color: #f1f1f1; /* Light gray */
+  color: #333;
+  margin-right: auto;
+  border-bottom-left-radius: 5px;
+}
+
+.chat-timestamp {
+  display: block;
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 5px;
+  text-align: right;
+}
+
+/* === Chat Input Area === */
+.admin-chat-input-area {
+  display: flex;
+  margin-top: 15px;
+}
+
+.admin-chat-input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  font-size: 0.9rem;
+}
+
+.admin-chat-input-area button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.admin-chat-input-area button:hover {
+  background-color: #0056b3;
+}
+
+/* === No Orders Message === */
+.admin-no-orders-message {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #777;
+}

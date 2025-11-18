@@ -1,0 +1,139 @@
+/* File: src/pages/HomePage.css */
+
+/* ===== NOTUN: Hero Section (Full Image) ===== */
+.hero-section {
+  width: 100%;
+  display: flex;
+  align-items: stretch; /* Duti column-ke shoman bhabe lomba kore */
+  justify-content: space-between;
+  background-color: #d7ccc8; /* Light-brown background */
+  box-sizing: border-box;
+  min-height: 400px; /* Hero section-er ekti minimum height */
+  /* Padding shoriye dewa holo jate chobi lege thake */
+}
+
+/* === 1. Baam Diker Lekha === */
+.hero-text {
+  flex: 1.2;
+  color: #3e2723;
+  padding: 50px 40px; /* Padding shudhu lekhar ongshoke dewa holo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Lekha-guloke majhkhane rakhe */
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.hero-button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #5d4037;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  max-width: 200px; /* Button jate beshi boro na hoy */
+}
+.hero-button:hover {
+  background-color: #241714;
+  color: #cebfbf;
+
+}
+
+/* === 2. Daan Diker Chobi === */
+.hero-image {
+  flex: 1;
+  /* Chobi-r container-ke r kono style-er dorkar nei */
+}
+.hero-image img {
+  width: 100%; /* Chobi-ke container-er puro width dey */
+  height: 100%; /* Chobi-ke container-er puro height dey */
+  object-fit: cover; /* Chobi-ke aspect ratio thik rekhe fill kore */
+  
+  /* Chobi-r daan dike rounded effect baad dewa holo jate lege thake */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); */
+}
+
+
+/* ===== Featured Books Section (Ager code) ===== */
+.featured-books-section {
+  padding: 50px 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.featured-books-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #3e2723;
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #d7ccc8;
+  padding-bottom: 15px;
+}
+.no-books-message {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+}
+.book-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* ===== Category Section Style (Ager code) ===== */
+.category-section {
+  padding: 50px 25px;
+  background-color: #dacdb2;
+}
+.category-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #3e2723;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border: 1px solid #bcaaa4;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #3e2723;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+.category-card:hover {
+  background-color: #3f2e2b;
+  color: #ffffff;
+  border-color: #3e2723;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
