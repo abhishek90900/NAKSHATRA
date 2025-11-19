@@ -1,43 +1,48 @@
 /* File: src/pages/HomePage.css */
 
-/* ===== NOTUN: Hero Section (Full Image) ===== */
+/* =========================================
+   1. HERO SECTION (Animation & Layout Fixed)
+   ========================================= */
 .hero-section {
   width: 100%;
   display: flex;
-  align-items: stretch; /* Duti column-ke shoman bhabe lomba kore */
+  align-items: stretch; 
   justify-content: space-between;
   background-color: #d7ccc8; /* Light-brown background */
   box-sizing: border-box;
-  min-height: 400px; /* Hero section-er ekti minimum height */
-  /* Padding shoriye dewa holo jate chobi lege thake */
+  height: 450px; /* ⚠️ FIXED HEIGHT: Animation er jonyo fixed height dorkar */
+  overflow: hidden;
+  position: relative;
 }
 
-/* === 1. Baam Diker Lekha === */
+/* --- Baam Diker Lekha (Text) --- */
 .hero-text {
   flex: 1.2;
   color: #3e2723;
-  padding: 50px 40px; /* Padding shudhu lekhar ongshoke dewa holo */
+  padding: 0 60px; /* Top-bottom padding komano holo alignment er jonyo */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Lekha-guloke majhkhane rakhe */
+  justify-content: center; 
+  z-index: 10;
 }
 
 .hero-title {
-  font-size: 3.2rem;
+  font-size: 3.5rem;
   font-weight: bold;
   margin-bottom: 20px;
   line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 30px;
   opacity: 0.9;
+  color: #4e342e;
 }
 
 .hero-button {
-  padding: 12px 25px;
-  font-size: 1rem;
+  padding: 14px 30px;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
   background-color: #5d4037;
@@ -45,37 +50,70 @@
   border-radius: 6px;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s;
-  max-width: 200px; /* Button jate beshi boro na hoy */
+  transition: background-color 0.3s ease;
+  max-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
+
 .hero-button:hover {
-  background-color: #241714;
-  color: #cebfbf;
-
+  background-color: #3e2723;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
-/* === 2. Daan Diker Chobi === */
+/* --- Daan Diker Chobi (Animation Area) --- */
 .hero-image {
   flex: 1;
-  /* Chobi-r container-ke r kono style-er dorkar nei */
+  position: relative; /* ⚠️ Image k dhore rakhar jonyo relative dorkar */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: black; /* Blackout effect er base color */
 }
+
 .hero-image img {
-  width: 100%; /* Chobi-ke container-er puro width dey */
-  height: 100%; /* Chobi-ke container-er puro height dey */
-  object-fit: cover; /* Chobi-ke aspect ratio thik rekhe fill kore */
+  position: absolute; /* ⚠️ Image k fix kora holo parent er vitore */
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  opacity: 0; /* Surute invisible */
   
-  /* Chobi-r daan dike rounded effect baad dewa holo jate lege thake */
-  /* border-radius: 8px; */
-  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); */
+  /* === ANIMATION SETUP === */
+  animation: fadeBlackout 3s ease-in-out forwards;
 }
 
+/* === KEYFRAMES FOR BLACKOUT FADE ANIMATION === */
+@keyframes fadeBlackout {
+  0% {
+    opacity: 0;      /* Black screen (Invisible) */
+    transform: scale(1.05); /* Ektu zoomed in */
+  }
+  15% {
+    opacity: 1;      /* Image fully visible */
+    transform: scale(1);
+  }
+  85% {
+    opacity: 1;      /* Image stays visible */
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;      /* Fade to black again */
+    transform: scale(1.05);
+  }
+}
 
-/* ===== Featured Books Section (Ager code) ===== */
+/* =========================================
+   2. FEATURED BOOKS SECTION
+   ========================================= */
 .featured-books-section {
   padding: 50px 25px;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .featured-books-title {
   font-size: 2.2rem;
   font-weight: bold;
@@ -85,22 +123,28 @@
   border-bottom: 2px solid #d7ccc8;
   padding-bottom: 15px;
 }
+
 .no-books-message {
   text-align: center;
   font-size: 1.1rem;
   color: #555;
 }
+
 .book-list-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
-/* ===== Category Section Style (Ager code) ===== */
+/* =========================================
+   3. CATEGORY SECTION (Bottom Grid)
+   ========================================= */
 .category-section {
-  padding: 50px 25px;
+  padding: 60px 25px;
   background-color: #dacdb2;
+  margin-top: 40px;
 }
+
 .category-title {
   font-size: 2.2rem;
   font-weight: bold;
@@ -108,6 +152,7 @@
   text-align: center;
   margin-bottom: 40px;
 }
+
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -115,6 +160,7 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .category-card {
   display: flex;
   align-items: center;
@@ -128,12 +174,41 @@
   font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
+
 .category-card:hover {
-  background-color: #3f2e2b;
+  background-color: #5d4037;
   color: #ffffff;
-  border-color: #3e2723;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-color: #5d4037;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
+}
+
+/* =========================================
+   4. MOBILE RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column-reverse; /* Mobile e chobi upore, lekha niche */
+    height: auto; /* Height auto kora holo jate content fit hoy */
+    min-height: 500px;
+    padding: 0;
+  }
+  
+  .hero-image {
+    height: 250px; /* Mobile e image er height fixed */
+    width: 100%;
+  }
+
+  .hero-text {
+    padding: 40px 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
 }
