@@ -5,7 +5,6 @@
   background-color: #3e2723;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #5d4037;
-  /* আগের প্যাডিং ছিল 15px, এখন কমানো হয়েছে */
   padding: 0; 
 }
 
@@ -13,7 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* Height এখানে ফিক্সড করে দিচ্ছি */
   height: 75px; 
   padding: 0 20px;
 }
@@ -26,7 +24,7 @@
 }
 
 .logo a {
-  font-size: 22px; /* Font size একটু কমানো হয়েছে */
+  font-size: 22px; 
   font-weight: bold;
   color: #ffffff;
   text-decoration: none;
@@ -35,7 +33,7 @@
 }
 
 .logo-image {
-  height: 35px; /* লোগোর ছবি ছোট করা হয়েছে */
+  height: 35px; 
   width: auto;
   margin-right: 10px;
 }
@@ -51,7 +49,7 @@
 .main-nav a {
   text-decoration: none;
   color: #f5f0e5;
-  font-size: 14px; /* Font size adjust */
+  font-size: 14px; 
   font-weight: bold;
   white-space: nowrap;
 }
@@ -59,16 +57,16 @@
   color: #ffffff;
 }
 
-/* Search Bar */
+/* Search Bar (Desktop) */
 .search-bar {
   display: flex;
   flex-grow: 1;
   margin: 0 15px;
-  max-width: 450px; /* Width একটু কমানো */
+  max-width: 450px; 
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid #5d4037;
-  height: 36px; /* Search bar height কমানো */
+  height: 36px; 
 }
 
 .search-bar input {
@@ -107,7 +105,7 @@
 .user-nav a, .user-nav button {
   text-decoration: none;
   color: #ffffff;
-  font-size: 13px; /* Font size adjust */
+  font-size: 13px; 
   padding: 6px 10px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -147,7 +145,7 @@
   color: #ffffff !important;
   font-size: 14px;
   border-radius: 50%;
-  width: 32px; /* Button size কমানো */
+  width: 32px; 
   height: 32px;
   display: flex;
   align-items: center;
@@ -158,18 +156,139 @@
   background: #5d4037;
 }
 
-/* Responsive Design */
+/* Mobile Search Icon (Desktop-এ লুকানো) */
+.mobile-search-icon {
+  display: none;
+}
+
+
+/* ------------------------------------- */
+/* --- Search Modal Styles (Popup) --- */
+/* ------------------------------------- */
+
+.search-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75); /* Blur background */
+  /* Modal-কে উপরে সরাতে পরিবর্তন */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Modal-কে উপরে align করবে */
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  /* ওভারল্যাপ ঠিক করার জন্য স্ক্রল দেওয়া হলো */
+  overflow-y: auto; 
+  padding-bottom: 20px; /* নিচের দিকে কিছুটা জায়গা */
+}
+
+.search-modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%; 
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  /* Modal-কে উপরে সরাতে নতুন প্রপার্টি */
+  margin-top: 50px; /* Header-এর নিচ থেকে শুরু হবে */
+  box-sizing: border-box; /* Padding ও Border যেন width-এর মধ্যে থাকে */
+}
+
+.search-modal-bar {
+  display: flex;
+  border: 2px solid #5d4037;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  height: 45px;
+}
+
+.search-modal-bar input {
+  flex-grow: 1;
+  padding: 0 15px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+.search-modal-button {
+  padding: 0 20px;
+  background-color: #5d4037;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.search-modal-close-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #795548;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.search-modal-close-button:hover {
+  background-color: #5d4037;
+}
+
+/* ------------------------------------- */
+/* --- Responsive Design (Mobile) --- */
+/* ------------------------------------- */
 @media (max-width: 768px) {
   .header-top {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-    gap: 10px;
+    /* Height and spacing adjustments for mobile */
+    height: 60px;
+    padding: 0 10px;
   }
   
-  .search-bar {
-    width: 100%;
-    margin: 5px 0;
-    max-width: 100%;
+  .logo a {
+    font-size: 18px;
+  }
+  .logo-image {
+    height: 30px;
+  }
+
+  /* Hide Desktop elements on Mobile */
+  .desktop-search,
+  .main-nav, 
+  .desktop-help,
+  .desktop-logout {
+    display: none !important;
+  }
+  
+  /* Show Mobile Search Icon */
+  .mobile-search-icon {
+    display: flex; /* Make it visible */
+    padding: 6px 8px;
+    font-size: 16px;
+  }
+
+  /* User Navigation adjustments for mobile */
+  .user-nav {
+    gap: 5px;
+  }
+  
+  .user-nav a, .user-nav button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  /* Hide logged-in user name on small screens to save space */
+  .user-nav span {
+    display: none; 
+  }
+  
+  /* Theme button size adjustment */
+  .theme-toggle-button {
+    width: 28px; 
+    height: 28px;
+    font-size: 12px;
   }
 }
